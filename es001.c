@@ -4,7 +4,7 @@ date:
 es.     001
 testo La videoteca "Ciak film" necessita di un programma che carichi la
         lista film in un array di struttura e che stampi a video i 5 campi :
-        numero, titolo film, genere, anno di uscita, disponibilità film
+        numero, titolo film, genere, anno di uscita, disponibilitï¿½ film
 */
 #include <stdio.h>
 #include <stdlib.h>
@@ -35,31 +35,31 @@ void leggiLista(Film lista[], int n) {
     } else {
         while(fgets(riga, LUNG, fp) != NULL) {
 
-            /*con la funzione strtok() posso dividere una stinga in più parti passando anche un
-            carattere come delimitatore, cioè se legge quel carattere si ferma nella lettura, ma
-            se si ridà il comando riprende da dove aveva interrotto*/
+            /*con la funzione strtok() posso dividere una stinga in piï¿½ parti passando anche un
+            carattere come delimitatore, cioï¿½ se legge quel carattere si ferma nella lettura, ma
+            se si ridï¿½ il comando riprende da dove aveva interrotto*/
             pezzo = strtok(riga, ",");
 
             //controllo che effettivamente legga qualcosa
             if (pezzo != NULL) {
                 //la funzione atoi serve per convertire una stringa in un intero
-                lista[k].n = atoi(pezzo);
+                (lista + k) -> n = atoi(pezzo);
                 pezzo = strtok(NULL, ",");
             }
             if (pezzo != NULL) {
-                strcpy(lista[k].titolo, pezzo);
+                strcpy((lista + k) -> titolo, pezzo);
                 pezzo = strtok(NULL, ",");
             }
             if (pezzo != NULL) {
-                strcpy(lista[k].genere, pezzo);
+                strcpy((lista + k) -> genere, pezzo);
                 pezzo = strtok(NULL, ",");
             }
             if (pezzo != NULL) {
-                lista[k].anno = atoi(pezzo);
+                (lista + k) -> anno = atoi(pezzo);
                 pezzo = strtok(NULL, ",");
             }
             if (pezzo != NULL) {
-                strcpy(lista[k].disp, pezzo);
+                strcpy((lista + k) -> disp, pezzo);
             }
             k++;
         }
@@ -69,18 +69,19 @@ void leggiLista(Film lista[], int n) {
 
 void stampaLista(Film lista[], int n){
     for(int k = 0; k < n; k++){
-        printf("N. film: %2d\n", lista[k].n);
-        printf("Tiolo: %s\n", lista[k].titolo);
-        printf("Genere: %s\n", lista[k].genere);
-        printf("Anno uscita: %d\n", lista[k].anno);
-        printf("%s\n", lista[k].disp);
+        printf("N. film: %2d\n", (lista + k) -> n);
+        printf("Tiolo: %s\n", (lista + k) -> titolo);
+        printf("Genere: %s\n", (lista + k) -> genere);
+        printf("Anno uscita: %d\n", (lista + k) -> anno);
+        printf("%s\n", (lista + k) -> disp);
     }
 }
 
-main() {
+int main() {
     Film lista[DIM];
 
     leggiLista(lista, DIM);
 
     stampaLista(lista, DIM);
+    return 0;
 }

@@ -10,19 +10,19 @@ void scambio(int *x, int *y){
 }
 
 void bubbleSort3(int vett[], int n){
-    int sup, sca;
+    int k, sup, sca;
 
     sup = n - 1;
     
     while (sup > 0)
     {
         sca = 0;
-        for (int* p = vett; p < vett + sup; p++)
+        for (k = 0; k < sup; k++)
         {
-            if (*p > *(p + 1))
+            if (*(vett + k) > *(vett + k + 1))
             {
-                scambio(p,  (p + 1));
-                sca = p - vett;
+                scambio((vett + k), (vett + k + 1));
+                sca = k;
             }
         }
         sup = sca;
@@ -30,8 +30,8 @@ void bubbleSort3(int vett[], int n){
 }
 
 void stampaVett(int vett[], int n){
-    for (int* p = vett; p < vett + DIM; p++){
-        printf("%3d", *p);
+    for (int k = 0; k < n; k++){
+        printf("%3d", *(vett + k));
     }
 }
 
